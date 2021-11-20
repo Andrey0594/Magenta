@@ -1,8 +1,16 @@
 BEGIN:VCARD
 VERSION:3.0
 PRODID:Magenta
-FN;CHARSET=UTF-8:Саакян Кристина
-N;CHARSET=UTF-8:Саакян Кристина
-ORG;CHARSET=UTF-8:
-TITLE;CHARSET=UTF-8:
+FN;CHARSET=UTF-8:Палкин Кирилл Андреевич
+N;CHARSET=UTF-8:Палкин Кирилл Андреевич
+ORG;CHARSET=UTF-8:Mice Capital
+TITLE;CHARSET=UTF-8:Key account manager
+ADR;TYPE=dom,work;CHARSET=UTF-8:;;г. Москва;;;;
+TEL;TYPE=work:+79165901433
+EMAIL;TYPE=INTERNET,PREF:go@mice.capital
+URL;type=HOME;CHARSET=UTF-8:http://Mice.capital
+BDAY:1992-07-13
+X-SOCIALPROFILE;type=Instagram;x-user=@kreal13:https://instagram.com/kreal13/
+X-SOCIALPROFILE;type=Telegram;x-user=@kreal13:https://tele.click/kreal13
+X-SOCIALPROFILE;type=whatsup;x-user=@+79165901433:https://wa.me/+79165901433
 END:VCARD

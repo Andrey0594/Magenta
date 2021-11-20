@@ -204,7 +204,7 @@ namespace Magenta
                 GlobalFlag = true;
                 while (GlobalFlag)
                 {
-                    
+
                     if (Data != null)
                     {
                         int index = UrlDGView.CurrentRow.Index;
@@ -225,9 +225,11 @@ namespace Magenta
                                 GlobalFlag = false;
                                 continue;
                             }
+
                             if (message == "error")
                             {
-                                MessageBox.Show(@"Nfc Reader не обнаружен. Перезагрузите программу.", @"Magenta", MessageBoxButtons.OK,
+                                MessageBox.Show(@"Nfc Reader не обнаружен. Перезагрузите программу.", @"Magenta",
+                                    MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
                                 GlobalFlag = false;
                                 Close();
@@ -237,13 +239,16 @@ namespace Magenta
                                 if (message.Contains("ошибки"))
                                 {
                                     UrlDGView.CurrentRow.Cells["StatusColumn"].Value = Properties.Resources.error;
-                                    Db.UpdateStatus(-1, int.Parse(UrlDGView.CurrentRow.Cells["IdColumn"].Value.ToString()), File.Hash);
+                                    Db.UpdateStatus(-1,
+                                        int.Parse(UrlDGView.CurrentRow.Cells["IdColumn"].Value.ToString()), File.Hash);
                                     GlobalFlag = false;
                                     break;
 
                                 }
+
                                 UrlDGView.CurrentRow.Cells["StatusColumn"].Value = Properties.Resources.ok;
-                                Db.UpdateStatus(1, int.Parse(UrlDGView.CurrentRow.Cells["IdColumn"].Value.ToString()), File.Hash);
+                                Db.UpdateStatus(1, int.Parse(UrlDGView.CurrentRow.Cells["IdColumn"].Value.ToString()),
+                                    File.Hash);
                                 if (CheckAfterWriteChBox.Checked)
                                 {
                                     string vcf = "";
@@ -253,22 +258,35 @@ namespace Magenta
                                     frm.ShowDialog(this);
 
                                 }
+
                                 if (AutoincrementChBox.Checked && index + 1 < UrlDGView.Rows.Count)
                                     UrlDGView.Rows[++index].IsCurrent = true;
                                 else if (AutoincrementChBox.Checked)
                                 {
                                     writeEnabled = false;
                                 }
+
                                 if (!AuthomaticWriteChBox.Checked)
                                     break;
                             }
-                            
+
                             AddCardPanel.Visible = false;
                             UrlDGView.Enabled = ParametrsDGView.Enabled = true;
                             Application.DoEvents();
                             Thread.Sleep(1000);
                         }
+                        else
+                        {
+                            GlobalFlag = false;
+                            UrlDGView.CurrentRow.Cells["StatusColumn"].Value = Properties.Resources.error;
+                            Db.UpdateStatus(-1,
+                                int.Parse(UrlDGView.CurrentRow.Cells["IdColumn"].Value.ToString()), File.Hash);
+                            MessageBox.Show("Слишком большие данные", "Magenta", MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
+                        }
                     }
+                    else GlobalFlag = false;
                 }
                 
             }
